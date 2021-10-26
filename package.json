@@ -4,12 +4,22 @@
   "description": "A clone app of task manager Trello",
   "main": "server.js",
   "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server.js",
+    "client": "npm start --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Miguel Kristian",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^6.3.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^6.0.11"
+    "express-validator": "^6.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.11",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0"
   }
 }

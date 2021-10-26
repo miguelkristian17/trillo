@@ -1,17 +1,16 @@
 const express = require("express");
-// const connectDB = require("./config/db");
+const connectDB = require("./config/db");
 const app = express();
 
 //Connect Database
-// connectDB();
+connectDB();
 
 //Init Middleware
 app.use(express.json({extended: false}))
 
 //Define Routes
-app.get('/', (req, res) => {  
-    res.send('YOUR EXPRESS BACKEND IS CONNECTED TO REACT' );  
-}); 
+app.use("/api/users", require("./routes/api/users"));
+app.use('/api/auth', require("./routes/api/auth"));
 
 const PORT = process.env.PORT || 5000;
 
