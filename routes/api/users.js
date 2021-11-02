@@ -28,10 +28,22 @@ router.post("/", [
     check("name", "Name is Required")
         .not()
         .isEmpty(),
-    check("username","Usernae is Required")
+    check("username","Username is Required")
         .not()
-        .isEmpty(),
-    check("email", "Please include an Email").isEmail(),
+        .isEmpty()
+        .custom((value, {req}) => {
+            return User.findOne({username: value}).then(user => {
+                if(user){
+                    return Promise.reject("Username already exists")
+                }
+            })}),
+    check("email", "Please include an Email").isEmail()
+        .custom((value, {req}) => {
+            return User.findOne({email: value}).then(user => {
+                if(user){
+                    return Promise.reject("Email already exists")
+                }
+            })}),
     check("password", "Please enter a password with 8 or more characters")
     .isLength({min: 8})
 
