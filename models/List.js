@@ -8,7 +8,6 @@ const ListSchema = mongoose.Schema({
     order: {
         type: Number,
         required: true,
-        default: 0
     },
     board:{
         type: mongoose.Schema.Types.ObjectId,
@@ -17,3 +16,6 @@ const ListSchema = mongoose.Schema({
 },{
     timestamps:true
 })
+
+const List = mongoose.model('list', ListSchema);
+module.exports = List;
